@@ -18,19 +18,28 @@ namespace PromotionEngine
             if (orderList == null || orderList.Count() == 0)
                 return result;
 
-            var aggList = orderList.GroupBy(x => x).ToDictionary(k => k.Key, k => k.Count());
+            var aggList = GetAggregatesOfSKUs(orderList);
 
-            foreach(var promotion in promotionsContext.Promotions)
+            foreach (var promotion in promotionsContext.Promotions)
             {
                 result += promotion.Calculate(aggList);
             }
-
-            // Calculate individual SKU values
-            result += aggList
-                .Join(SKU.SKUTypes, k => k.Key, s => s.Key, (k, s) => new { k, s })
-                .Sum(x => x.k.Value * x.s.Value);
+            result += CalculateIndividualSKUValues(aggList);
 
             return result;
+        }
+
+        private Dictionary<char, int> GetAggregatesOfSKUs(List<char> orderList)
+        {
+            return orderList.GroupBy(x => x).ToDictionary(k => k.Key, k => k.Count());
+        }
+
+        private int CalculateIndividualSKUValues(Dictionary<char, int> aggList)
+        {
+            // Calculate individual SKU values
+            return aggList
+                .Join(SKU.SKUTypes, k => k.Key, s => s.Key, (k, s) => new { k, s })
+                .Sum(x => x.k.Value * x.s.Value);
         }
     }
 }
