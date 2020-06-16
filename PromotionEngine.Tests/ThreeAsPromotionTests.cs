@@ -14,6 +14,22 @@ namespace PromotionEngine.Tests
         }
 
         [Fact]
+        public void GivenLessThanThreeAsPrmotionShouldNotBeApplied()
+        {
+            IPromotionStrategy strategy = new ThreeAsPromotion();
+            var result = strategy.Calculate(new Dictionary<char, int> { { 'A', 2 } });
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void GivenSevenAsPrmotionShouldBeAppliedTwoTimes()
+        {
+            IPromotionStrategy strategy = new ThreeAsPromotion();
+            var result = strategy.Calculate(new Dictionary<char, int> { { 'A', 7 } });
+            Assert.Equal(260, result);
+        }
+
+        [Fact]
         public void GivenEmptyListThenThreeAsPrmotionShouldReturnZero()
         {
             IPromotionStrategy strategy = new ThreeAsPromotion();
