@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 namespace PromotionEngine
-{
-    public class OrderValueCalculator
+{    
+    public class OrderValueCalculator : IOrderValueCalculator
     {
         public int Calculate(List<char> orderList)
         {
