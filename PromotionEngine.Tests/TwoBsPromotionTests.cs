@@ -14,6 +14,22 @@ namespace PromotionEngine.Tests
         }
 
         [Fact]
+        public void GivenLessThanTwoBsPrmotionShouldNotBeApplied()
+        {
+            IPromotionStrategy strategy = new TwoBsPromotion();
+            var result = strategy.Calculate(new Dictionary<char, int> { { 'B', 1 } });
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void GivenFiveBsPrmotionShouldBeAppliedTwoTimes()
+        {
+            IPromotionStrategy strategy = new TwoBsPromotion();
+            var result = strategy.Calculate(new Dictionary<char, int> { { 'B', 5 } });
+            Assert.Equal(90, result);
+        }
+
+        [Fact]
         public void GivenEmptyListThenTwoBsPrmotionShouldReturnZero()
         {
             IPromotionStrategy strategy = new TwoBsPromotion();
