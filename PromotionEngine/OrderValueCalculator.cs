@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace PromotionEngine
-{    
+{
     public class OrderValueCalculator : IOrderValueCalculator
     {
         private IPromotionStrategyContext promotionsContext;

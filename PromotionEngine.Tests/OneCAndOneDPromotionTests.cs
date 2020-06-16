@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 namespace PromotionEngine.Tests
 {
@@ -10,7 +8,7 @@ namespace PromotionEngine.Tests
         public void GivenMultipleCAndOneDThenPrmotionShouldBeApplied()
         {
             IPromotionStrategy strategy = new OneCAndOneDPromotion();
-            var result = strategy.Calculate(new Dictionary<char, int> { { 'C', 3 },{'D' , 1 } });
+            var result = strategy.Calculate(new Dictionary<char, int> { { 'C', 3 }, { 'D', 1 } });
             Assert.Equal(30, result);
         }
 

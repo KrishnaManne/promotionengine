@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PromotionEngine
 {
@@ -17,7 +15,7 @@ namespace PromotionEngine
             var itemCount = orderList.FirstOrDefault(x => x.Key == key).Value;
             int newItemCount = itemCount % groupSize;
             orderList[key] = newItemCount;
-            return (itemCount / groupSize) * offerValue;            
+            return (itemCount / groupSize) * offerValue;
         }
     }
 }

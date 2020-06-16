@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -15,7 +14,7 @@ namespace PromotionEngine.Tests
         [Fact]
         public void ScenarioA()
         {
-            var testList = new List<char>() {'A','B','C' };
+            var testList = new List<char>() { 'A', 'B', 'C' };
             var result = orderValueCalculator.Calculate(testList);
             Assert.Equal(100, result);
         }
