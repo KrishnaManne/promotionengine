@@ -21,7 +21,15 @@ namespace PromotionEngine.Tests
         }
 
         [Fact]
-        public void GivenEmptyListThenTwoBsPrmotionShouldReturnZero()
+        public void GivenOneCAndZeroDThenPrmotionShouldNotBeApplied()
+        {
+            IPromotionStrategy strategy = new OneCAndOneDPromotion();
+            var result = strategy.Calculate(new Dictionary<char, int> { { 'C', 1 }, { 'D', 0 } });
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void GivenEmptyListThenPrmotionShouldReturnZero()
         {
             IPromotionStrategy strategy = new OneCAndOneDPromotion();
             var result = strategy.Calculate(new Dictionary<char, int>());
