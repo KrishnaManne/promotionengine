@@ -34,5 +34,28 @@ namespace PromotionEngine.Tests
             var result = orderValueCalculator.Calculate(testList);
             Assert.Equal(280, result);
         }
+
+        [Fact]
+        public void GivenOnlyDsThenAppropriateResultShouldBeShown()
+        {
+            var testList = new List<char>() { 'D', 'D' };
+            var result = orderValueCalculator.Calculate(testList);
+            Assert.Equal(30, result);
+        }
+
+        [Fact]
+        public void GivenEmptyListThenAppropriateResultShouldBeShown()
+        {
+            var testList = new List<char>();
+            var result = orderValueCalculator.Calculate(testList);
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void GivenNullThenAppropriateResultShouldBeShown()
+        {            
+            var result = orderValueCalculator.Calculate(null);
+            Assert.Equal(0, result);
+        }
     }
 }
